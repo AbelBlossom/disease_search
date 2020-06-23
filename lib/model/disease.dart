@@ -28,7 +28,7 @@ class Disease {
       dataUpdatedAt: data["data_updated_at"],
       name: data["name"],
       diagnosis: data["diagnosis"],
-      facts: data["facts"],
+      facts: List<String>.from(data["facts"]),
       isActive: data["is_active"],
       more: data["more"],
       symptoms: data["symptoms"],
@@ -42,6 +42,11 @@ class Disease {
   bool get hasDiagnosis => diagnosis != null;
   bool get hasFacts => facts != null && facts.isNotEmpty;
   bool get hasTransmission => transmission != null;
+
+  String get previewName {
+    var i = name.lastIndexOf("-");
+    return name.substring(0, i);
+  }
 
   List<String> titles() {
     List<String> titles = List();
