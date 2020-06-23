@@ -1,3 +1,4 @@
+import 'package:disease_search/Screens/disease_details.dart';
 import 'package:disease_search/Screens/profile_page.dart';
 import 'package:disease_search/model/disease.dart';
 import 'package:disease_search/providers/disease_provider.dart';
@@ -119,6 +120,11 @@ class DiseaseList extends StatelessWidget {
               itemBuilder: (context, index) {
                 Disease disease = snapshot.data[index];
                 return ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(CupertinoPageRoute(
+                      builder: (_) => DiseaseDetails(disease),
+                    ));
+                  },
                   title: Text(
                     disease.previewName,
                     style: TextStyle(
