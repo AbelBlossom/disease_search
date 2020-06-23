@@ -48,8 +48,13 @@ class Disease {
     return name.substring(0, i);
   }
 
-  List<String> titles() {
+  List<String> get titles {
     List<String> titles = List();
+
+    if(hasFacts){
+      titles.add("Facts");
+    }
+
     if(hasSymptoms){
       titles.add("Symptoms");
     }
@@ -61,9 +66,6 @@ class Disease {
     }
     if(hasDiagnosis){
       titles.add("Diagnosis");
-    }
-    if(hasFacts){
-      titles.add("Facts");
     }
     
     return titles;

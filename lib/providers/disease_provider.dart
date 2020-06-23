@@ -18,7 +18,7 @@ class DiseaseProvider extends ChangeNotifier {
 
   Future<void> initialise() async {
     var data = await rootBundle.loadString("assets/diseases.json");
-    var diseasesMap = Map<String, dynamic>.from(jsonDecode(data));
+    var diseasesMap = Map<String, dynamic>.from(jsonDecode(data.replaceAll("\n", "").replaceAll("\t", "")));
     var diseaseList = List<Map<String, dynamic>>.from(diseasesMap["diseases"]);
     diseaseList.forEach((json) {
       var _item = Disease.fromJson(json);
