@@ -113,7 +113,8 @@ class ProfilePage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     "About Abel Dzanado",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold, height: 2),
                   ),
                   Text(
                       "Abel Dzan is a Software Developer in UENR and is in his final year about to graduate and attain his deploma in computer scienc Abel Dzan is a Software Developer in UENR and is in his final year about to graduate and attain his deploma in computer science ")
