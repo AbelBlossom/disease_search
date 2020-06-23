@@ -29,6 +29,9 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                 children: [
                   Expanded(
                     child: TextField(
+                      onChanged: (data){
+                        diseaseProvider.search(data);
+                      },
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 20.0),

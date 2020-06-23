@@ -13,6 +13,8 @@ class DiseaseDetails extends StatefulWidget {
 }
 
 class _DiseaseDetailsState extends State<DiseaseDetails> {
+  List<GlobalKey> keys = [];
+
   @override
   Widget build(BuildContext context) {
     Disease _disease = widget.disease;
@@ -50,16 +52,18 @@ class _DiseaseDetailsState extends State<DiseaseDetails> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: _disease.titles
-                        .map(
-                          (e) => Container(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Chip(
-                              label: Text(e),
-                            ),
+                    children: [
+                      for (int i = 0; i < _disease.titles.length; i++)
+                        Container(
+                          padding: EdgeInsets.only(right: 10.0),
+                          child: FilterChip(
+                            onSelected: (r) {
+                              Scrollable.ensureVisible(keys[i].currentContext);
+                            },
+                            label: Text(_disease.titles[i]),
                           ),
-                        )
-                        .toList(),
+                        ),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -83,6 +87,9 @@ class _DiseaseDetailsState extends State<DiseaseDetails> {
       fontSize: 17,
       color: Colors.black87,
     );
+    _disease.titles.forEach((_) {
+      keys.add(GlobalKey());
+    });
     List<Widget> _list = [];
 
     if (_disease.hasFacts) {
@@ -106,41 +113,71 @@ class _DiseaseDetailsState extends State<DiseaseDetails> {
     if (_disease.hasSymptoms) {
       _list.add(withTitle(
         label: "Symptoms",
-        children: [Text(_disease.symptoms.trim(), style: _kContent,)],
+        children: [
+          Text(
+            _disease.symptoms.trim(),
+            style: _kContent,
+          )
+        ],
       ));
     }
 
     if (_disease.hasTransmission) {
       _list.add(withTitle(
         label: "Transmission",
-        children: [Text(_disease.transmission.trim(), style: _kContent,)],
+        children: [
+          Text(
+            _disease.transmission.trim(),
+            style: _kContent,
+          )
+        ],
       ));
     }
 
     if (_disease.hasTreatment) {
       _list.add(withTitle(
         label: "Treatments",
-        children: [Text(_disease.treatment.trim(), style: _kContent,)],
+        children: [
+          Text(
+            _disease.treatment.trim(),
+            style: _kContent,
+          )
+        ],
       ));
     }
 
     if (_disease.hasDiagnosis) {
       _list.add(withTitle(
         label: "Diagnosis",
-        children: [Text(_disease.diagnosis.trim(), style: _kContent,)],
+        children: [
+          Text(
+            _disease.diagnosis.trim(),
+            style: _kContent,
+          )
+        ],
       ));
     }
 
-    return _list;
+    List<Widget> _listWithKeys = [];
+    for (int i = 0; i < _list.length; i++) {
+      _listWithKeys.add(Container(
+        child: _list[i],
+        key: keys[i],
+      ));
+    }
+
+    return _listWithKeys;
   }
 
-  Widget withTitle({@required String label, @required List<Widget> children}) {
+  Widget withTitle(
+      {Key key, @required String label, @required List<Widget> children}) {
     var theme = Theme.of(context);
     TextStyle _kTitle = theme.textTheme.headline5.copyWith(
       color: theme.primaryColor,
       fontWeight: FontWeight.bold,
     );
     return Column(
+        key: key,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
