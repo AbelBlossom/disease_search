@@ -1,5 +1,6 @@
 import 'package:disease_search/Screens/disease_details.dart';
 import 'package:disease_search/Screens/disease_search.dart';
+import 'package:disease_search/Screens/profile_page.dart';
 import 'package:disease_search/providers/disease_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       //  home: DiseaseSearch(),
-      home: DiseaseSearch(),
+      home: DiseaseDetails(),
     );
   }
 }

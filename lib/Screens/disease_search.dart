@@ -1,4 +1,4 @@
-import 'package:disease_search/Screens/disease_details.dart';
+import 'package:disease_search/Screens/profile_page.dart';
 import 'package:disease_search/model/disease.dart';
 import 'package:disease_search/providers/disease_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,8 +47,16 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                   ),
                   Container(
                     child: IconButton(
-                      icon: Icon(Icons.menu),
-                      onPressed: () {},
+                      icon: Icon(
+                        Icons.person,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return ProfilePage();
+                        }));
+                      },
                     ),
                   )
                 ],
@@ -111,14 +119,6 @@ class DiseaseList extends StatelessWidget {
               itemBuilder: (context, index) {
                 Disease disease = snapshot.data[index];
                 return ListTile(
-                  onTap: () {
-
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (_) => DiseaseDetails(disease),
-                      ),
-                    );
-                  },
                   title: Text(
                     disease.previewName,
                     style: TextStyle(
