@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       //  home: DiseaseSearch(),
-      home: DiseaseDetails(),
+      home: DiseaseSearch(),
     );
   }
 }
