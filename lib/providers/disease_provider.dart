@@ -46,7 +46,7 @@ class DiseaseProvider extends ChangeNotifier {
 
   search(String data) {
     var _searched =
-        _diseases.where((disease) => disease.name.contains(data)).toList();
+        _diseases.where((disease) => disease.name.toLowerCase().contains(data.toLowerCase())).toList();
     diseases.add(_searched
         .getRange(0, _searched.length >= 15 ? 15 : _searched.length)
         .toList());

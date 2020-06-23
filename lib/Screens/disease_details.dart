@@ -50,6 +50,7 @@ class _DiseaseDetailsState extends State<DiseaseDetails> {
               children: <Widget>[
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

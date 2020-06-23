@@ -1,3 +1,4 @@
+import 'package:disease_search/Screens/register.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -10,100 +11,80 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+//      backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBar(
+        title: Text("Login"),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(
+        child: ListView(
           children: <Widget>[
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 30),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
-                    ),
+            SizedBox(height: 50),
+            TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2),
+                ),
+                hintText: "Email",
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.black26,
-                      border: InputBorder.none,
-                      hintText: "Email",
-                      hintStyle: TextStyle(
-                        color: Colors.white70,
-                      ),
-                    ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.black26,
-                        border: InputBorder.none,
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed("/home");
-                    },
-                    child: Container(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            "LOGIN",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 1.4,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 24,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  hintText: "Password",
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: InkWell(
+                onTap: () {
+//                Navigator.of(context).pushReplacementNamed("/home");
+                },
+                child: FlatButton(
+                  onPressed: () {},
+                  color: theme.primaryColor,
+                  textColor: Colors.white,
+                  child: Text("LOGIN"),
+                ),
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed("/register");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => Register(),
+                    ),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Don't have an account yet ?",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white70,
+                      color: theme.primaryColor,
                     ),
                   ),
                 ),
